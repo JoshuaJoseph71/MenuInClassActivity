@@ -62,11 +62,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.main, menu)
+
         return super.onCreateOptionsMenu(menu)
+
     }
 
+    // the return
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+
+        when(item.itemId){
+
+            R.id.action_start -> binder?.start(100)
+
+            R.id.action_pause -> binder?.pause()
+
+            R.id.action_stop -> binder?.stop()
+
+            // return false if these buttons don't belong to this activity
+            else ->return false
+
+        }
+
+        // if these are your buttons return true
+        return true
+
+        //return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
